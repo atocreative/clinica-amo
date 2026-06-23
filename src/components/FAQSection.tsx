@@ -19,16 +19,16 @@ export default function FAQSection() {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (prefersReduced) return
       gsap.from(titleRef.current, {
-        y: 28, opacity: 0, duration: 1, ease: 'expo.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom' },
+        y: 55, opacity: 0, duration: 1.2, ease: 'expo.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
       })
       gsap.from(listRef.current?.querySelectorAll('[data-item]') ?? [], {
-        y: 24,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.9,
         ease: 'expo.out',
-        stagger: 0.1,
-        scrollTrigger: { trigger: listRef.current, start: 'top bottom' },
+        stagger: 0.12,
+        scrollTrigger: { trigger: listRef.current, start: 'top 88%' },
       })
     },
     { scope: sectionRef },

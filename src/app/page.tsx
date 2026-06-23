@@ -10,7 +10,6 @@ import FAQSection from '@/components/FAQSection'
 import Footer from '@/components/Footer'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import ScrollProgress from '@/components/ScrollProgress'
-
 export default function Home() {
   return (
     <>

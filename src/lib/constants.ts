@@ -26,8 +26,7 @@ export const ASSETS = {
   logo: '/logo.png',
   heroVideo:
     'https://f005.backblazeb2.com/file/website-archtect-assets/projects/projeto-0sks/videos/40d6b765-saveclip.app_aqpo0deuf0fpmcfxpq7gcx-7wt3n7npei94dijf_1y9crgcwpettzmxxfjonqj8m_eufnxuq9sm5pqvpq4x8bnoygbr4-km3013r_em.mp4',
-  heroImage:
-    'https://f005.backblazeb2.com/file/website-archtect-assets/projects/projeto-0sks/gallery/935fd991-saveclip.app_702625411_17974495215028704_7734346082169686214_n.png',
+  heroImage: '/5.png',
   personalPhoto: '/1.jpg',
   benefitsPhoto: '/3.jpg',
   cinematicPhoto: '/2.jpg',

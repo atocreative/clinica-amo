@@ -38,39 +38,41 @@ export default function CinematicCTA() {
         )
       }
 
-      const revealTrigger = { trigger: sectionRef.current, start: 'top bottom' }
+      const revealTrigger = { trigger: sectionRef.current, start: 'top 75%' }
 
       gsap.from(headlineRef.current, {
-        y: prefersReduced ? 0 : 50,
+        y: prefersReduced ? 0 : 80,
         opacity: 0,
-        duration: 1.2,
+        scale: prefersReduced ? 1 : 0.95,
+        duration: 1.4,
         ease: 'expo.out',
         scrollTrigger: revealTrigger,
       })
       gsap.from(subRef.current, {
-        y: prefersReduced ? 0 : 30,
+        y: prefersReduced ? 0 : 45,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: 'expo.out',
-        delay: 0.2,
+        delay: 0.18,
         scrollTrigger: revealTrigger,
       })
       gsap.from(ctaRef.current, {
-        y: prefersReduced ? 0 : 20,
+        y: prefersReduced ? 0 : 30,
         opacity: 0,
-        duration: 0.9,
+        scale: prefersReduced ? 1 : 0.92,
+        duration: 1.0,
         ease: 'expo.out',
-        delay: 0.4,
+        delay: 0.35,
         scrollTrigger: revealTrigger,
       })
 
-      // Spa essentials float
+      // Spa essentials: dramatic slide + float
       gsap.from(spaRef.current, {
-        x: -40, opacity: 0, duration: 1.6, ease: 'expo.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom' },
+        x: -70, opacity: 0, rotation: -20, duration: 1.8, ease: 'expo.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
       })
       gsap.to(spaRef.current, {
-        y: -20, duration: 4, ease: 'sine.inOut', repeat: -1, yoyo: true,
+        y: -24, duration: 4.5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 0.5,
       })
     },
     { scope: sectionRef },

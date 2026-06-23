@@ -28,9 +28,18 @@ export default function CTASection() {
     () => {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (prefersReduced) return
-      const trigger = { trigger: sectionRef.current, start: 'top bottom' }
-      gsap.from(leftRef.current, { x: -40, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: trigger })
-      gsap.from(rightRef.current, { x: 40, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: trigger })
+
+      const trigger = { trigger: sectionRef.current, start: 'top 85%' }
+
+      gsap.from(leftRef.current, {
+        clipPath: 'inset(0 0 100% 0)',
+        y: 40, opacity: 0, duration: 1.6, ease: 'expo.out',
+        scrollTrigger: trigger,
+      })
+      gsap.from(rightRef.current, {
+        x: 70, opacity: 0, scale: 0.96, duration: 1.5, ease: 'expo.out', delay: 0.15,
+        scrollTrigger: trigger,
+      })
     },
     { scope: sectionRef },
   )

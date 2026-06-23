@@ -22,39 +22,47 @@ export default function BenefitsSection() {
       const pref = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (pref) return
 
-      // Image column wipe reveal (top → bottom)
+      // Image column — aggressive clip-path wipe from bottom
       gsap.from(wrapperRef.current, {
         clipPath: 'inset(0 0 100% 0)',
-        duration: 1.4, ease: 'expo.out',
-        scrollTrigger: { trigger: wrapperRef.current, start: 'top bottom' },
+        duration: 1.6, ease: 'expo.out',
+        scrollTrigger: { trigger: wrapperRef.current, start: 'top 85%' },
       })
 
-      // Title reveal
-      gsap.from(titleRef.current, {
-        y: 30, opacity: 0, duration: 1, ease: 'expo.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom' },
-      })
+      // Title — word by word from below
+      const words = titleRef.current?.querySelectorAll('[data-word]') ?? []
+      if (words.length) {
+        gsap.from(words, {
+          y: '110%', opacity: 0, duration: 1.0, ease: 'expo.out', stagger: 0.08,
+          scrollTrigger: { trigger: titleRef.current, start: 'top 90%' },
+        })
+      } else {
+        gsap.from(titleRef.current, {
+          y: 60, opacity: 0, duration: 1.1, ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
+        })
+      }
 
-      // Image column parallax
+      // Image column strong parallax
       gsap.to(imageRef.current, {
-        y: -40,
+        y: -70,
         ease: 'none',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: 1.2 },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: 1.5 },
       })
 
-      // Cards stagger
+      // Cards — scale + translate stagger
       gsap.from(cardsRef.current?.querySelectorAll('[data-card]') ?? [], {
-        y: 40, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.12,
-        scrollTrigger: { trigger: cardsRef.current, start: 'top bottom' },
+        y: 70, opacity: 0, scale: 0.94, duration: 1.0, ease: 'expo.out', stagger: 0.14,
+        scrollTrigger: { trigger: cardsRef.current, start: 'top 88%' },
       })
 
       // Serum entrance + float
       gsap.from(serumRef.current, {
-        y: 30, opacity: 0, duration: 1.4, ease: 'expo.out',
-        scrollTrigger: { trigger: imageRef.current, start: 'top bottom' },
+        y: 60, opacity: 0, rotation: -15, duration: 1.6, ease: 'expo.out',
+        scrollTrigger: { trigger: imageRef.current, start: 'top 85%' },
       })
       gsap.to(serumRef.current, {
-        y: -18, duration: 3.5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1,
+        y: -22, duration: 3.8, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.2,
       })
     },
     { scope: sectionRef },

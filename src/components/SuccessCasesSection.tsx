@@ -41,12 +41,25 @@ export default function SuccessCasesSection() {
       if (pref) return
 
       gsap.from(titleRef.current, {
-        y: 30, opacity: 0, duration: 1, ease: 'expo.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom' },
+        y: 50, opacity: 0, duration: 1.2, ease: 'expo.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
       })
-      gsap.from(gridRef.current?.querySelectorAll('[data-case]') ?? [], {
-        y: 50, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.14,
-        scrollTrigger: { trigger: gridRef.current, start: 'top bottom' },
+
+      // Cards enter with scale + translate + stagger
+      const cards = gridRef.current?.querySelectorAll('[data-case]') ?? []
+      gsap.from(cards, {
+        y: 90, opacity: 0, scale: 0.92, duration: 1.1, ease: 'expo.out', stagger: 0.16,
+        scrollTrigger: { trigger: gridRef.current, start: 'top 88%' },
+      })
+
+      // Each card image: subtle parallax on scroll
+      cards.forEach((card) => {
+        const img = card.querySelector('img')
+        if (!img) return
+        gsap.to(img, {
+          y: -28, ease: 'none',
+          scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 1.2 },
+        })
       })
     },
     { scope: sectionRef },

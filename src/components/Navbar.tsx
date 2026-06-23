@@ -15,9 +15,15 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
+    onScroll() // set correct state on mount (handles page load with existing scroll)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
   useGSAP(
     () => {
@@ -28,11 +34,17 @@ export default function Navbar() {
     { scope: navRef },
   )
 
+  const isDark = scrolled || menuOpen
+
   return (
     <nav
       ref={navRef}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-charcoal/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+        menuOpen
+          ? 'bg-charcoal'
+          : scrolled
+          ? 'bg-charcoal/95 backdrop-blur-sm shadow-sm'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
@@ -42,8 +54,8 @@ export default function Navbar() {
             alt={SITE.name}
             width={160}
             height={64}
-            className={`h-14 w-auto object-contain transition-all duration-300 ${scrolled ? 'brightness-0 invert' : ''}`}
-            style={{ filter: scrolled ? 'brightness(0) invert(1)' : 'drop-shadow(0 3px 14px rgba(0,0,0,0.35))' }}
+            className="h-14 w-auto object-contain transition-all duration-300"
+            style={{ filter: isDark ? 'brightness(0) invert(1)' : 'drop-shadow(0 3px 14px rgba(0,0,0,0.35))' }}
             priority
           />
         </a>
@@ -98,7 +110,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Abrir menu"
+          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={menuOpen}
           className="md:hidden flex flex-col gap-[5px] p-2"
         >
@@ -106,10 +118,10 @@ export default function Navbar() {
             <span
               key={i}
               className={`block w-6 h-px transition-all duration-300 origin-center ${
-                scrolled ? 'bg-white' : 'bg-charcoal'
+                isDark ? 'bg-white' : 'bg-charcoal'
               } ${
                 i === 0 && menuOpen ? 'rotate-45 translate-y-[7px]' :
-                i === 1 && menuOpen ? 'opacity-0' :
+                i === 1 && menuOpen ? 'opacity-0 scale-x-0' :
                 i === 2 && menuOpen ? '-rotate-45 -translate-y-[7px]' : ''
               }`}
             />
@@ -118,17 +130,17 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`md:hidden bg-charcoal overflow-hidden transition-all duration-300 ${
-          menuOpen ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0'
+        className={`md:hidden bg-charcoal overflow-hidden transition-all duration-500 ease-in-out ${
+          menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-6 pt-4 pb-8 flex flex-col gap-6">
+        <div className="px-6 pt-2 pb-10 flex flex-col gap-7">
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="font-sans text-xs tracking-[0.2em] uppercase text-white/70 hover:text-primary transition-colors duration-150"
+              className="font-sans text-xs tracking-[0.2em] uppercase text-white/60 hover:text-primary transition-colors duration-150"
             >
               {label}
             </a>
@@ -136,9 +148,9 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setMenuOpen(false)}
-            className="self-start px-6 py-2.5 rounded-full bg-primary text-charcoal font-sans text-sm font-medium"
+            className="self-start px-6 py-3 rounded-full bg-primary text-charcoal font-sans text-sm font-medium tracking-wide"
           >
-            Agendar
+            Agendar Horário
           </a>
         </div>
       </div>

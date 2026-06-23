@@ -22,37 +22,47 @@ export default function PersonalBrandSection() {
       const pref = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (pref) return
 
-      const trigger = { trigger: sectionRef.current, start: 'top bottom' }
+      const trigger = { trigger: sectionRef.current, start: 'top 85%' }
 
-      gsap.from(photoRef.current, { x: -50, opacity: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: trigger })
-      gsap.from(textRef.current,  { x: 50,  opacity: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: trigger })
+      // Photo: clip from left + slide
+      gsap.from(photoRef.current, {
+        clipPath: 'inset(0 100% 0 0)',
+        x: -40, opacity: 0, duration: 1.6, ease: 'expo.out',
+        scrollTrigger: trigger,
+      })
+
+      // Text: slides in from right with scale
+      gsap.from(textRef.current, {
+        x: 80, opacity: 0, scale: 0.97, duration: 1.5, ease: 'expo.out', delay: 0.12,
+        scrollTrigger: trigger,
+      })
 
       // Accent line draws left → right
       gsap.from(accentLineRef.current, {
-        scaleX: 0, duration: 1, ease: 'expo.out',
+        scaleX: 0, duration: 1.2, ease: 'expo.out',
         transformOrigin: 'left',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 78%' },
       })
 
-      // Corner box scales in with slight bounce
+      // Corner box: scale + rotate
       gsap.from(boxRef.current, {
-        scale: 0, opacity: 0, duration: 0.9, ease: 'back.out(1.4)',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom' },
+        scale: 0, opacity: 0, rotation: -45, duration: 1.1, ease: 'back.out(1.6)',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
       })
 
       // Pink leaves entrance + slow drift
       gsap.from(leavesRef.current, {
-        scale: 0.85, opacity: 0, duration: 2, ease: 'expo.out',
+        scale: 0.7, opacity: 0, rotation: -25, duration: 2.2, ease: 'expo.out',
         scrollTrigger: trigger,
       })
       gsap.to(leavesRef.current, {
-        rotation: 8, duration: 12, ease: 'sine.inOut', repeat: -1, yoyo: true,
+        rotation: 10, duration: 14, ease: 'sine.inOut', repeat: -1, yoyo: true,
       })
 
-      // Photo parallax on scroll
+      // Photo parallax — stronger
       gsap.to(photoRef.current?.querySelector('[data-inner]') ?? null, {
-        y: -30, ease: 'none',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: 1.5 },
+        y: -55, ease: 'none',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: 1.8 },
       })
     },
     { scope: sectionRef },
@@ -61,11 +71,11 @@ export default function PersonalBrandSection() {
   return (
     <section id="about" ref={sectionRef} className="section-pad bg-cream overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-28 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-28 items-stretch">
 
           {/* Photo column */}
-          <div ref={photoRef} className="relative">
-            <div className="relative h-[520px] lg:h-[680px] overflow-hidden" data-inner>
+          <div ref={photoRef} className="relative flex flex-col">
+            <div className="relative flex-1 min-h-[520px] lg:min-h-[680px] overflow-hidden" data-inner>
               <Image
                 src={ASSETS.personalPhoto}
                 alt={SITE.professional}

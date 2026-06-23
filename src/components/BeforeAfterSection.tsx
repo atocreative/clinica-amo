@@ -22,12 +22,12 @@ export default function BeforeAfterSection() {
       const pref = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (pref) return
       gsap.from(titleRef.current, {
-        y: 30, opacity: 0, duration: 1, ease: 'expo.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom' },
+        y: 60, opacity: 0, duration: 1.2, ease: 'expo.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
       })
       gsap.from(sliderRef.current, {
-        opacity: 0, y: 40, duration: 1.2, ease: 'expo.out', delay: 0.15,
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom' },
+        opacity: 0, y: 50, duration: 1.4, ease: 'expo.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
       })
     },
     { scope: sectionRef },
@@ -42,10 +42,10 @@ export default function BeforeAfterSection() {
     if (dividerRef.current)   dividerRef.current.style.left = `${pct}%`
   }, [])
 
-  const onMouseDown  = useCallback(() => { isDragging.current = true  }, [])
-  const onMouseMove  = useCallback((e: React.MouseEvent)  => { if (isDragging.current) updatePos(e.clientX)             }, [updatePos])
-  const onTouchStart = useCallback(() => { isDragging.current = true  }, [])
-  const onTouchMove  = useCallback((e: React.TouchEvent) => { if (isDragging.current) updatePos(e.touches[0].clientX)  }, [updatePos])
+  const onMouseDown  = useCallback((e: React.MouseEvent)  => { isDragging.current = true; updatePos(e.clientX)            }, [updatePos])
+  const onMouseMove  = useCallback((e: React.MouseEvent)  => { if (isDragging.current) updatePos(e.clientX)              }, [updatePos])
+  const onTouchStart = useCallback((e: React.TouchEvent)  => { isDragging.current = true; updatePos(e.touches[0].clientX) }, [updatePos])
+  const onTouchMove  = useCallback((e: React.TouchEvent)  => { if (isDragging.current) updatePos(e.touches[0].clientX)  }, [updatePos])
   const stopDrag     = useCallback(() => { isDragging.current = false }, [])
 
   useEffect(() => {
@@ -73,8 +73,8 @@ export default function BeforeAfterSection() {
           ref={sliderRef}
           role="img"
           aria-label="Comparação antes e depois do procedimento"
-          className="relative w-full overflow-hidden cursor-col-resize select-none bg-charcoal"
-          style={{ aspectRatio: '16 / 9' }}
+          className="relative w-full overflow-hidden cursor-col-resize select-none"
+          style={{ aspectRatio: '4 / 5' }}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={stopDrag}
@@ -83,19 +83,17 @@ export default function BeforeAfterSection() {
           onTouchMove={onTouchMove}
           onTouchEnd={stopDrag}
         >
-          {/* Before */}
+          {/* Before — full bleed, no letterboxing */}
           <div className="absolute inset-0">
             <Image
               src={ASSETS.before}
               alt="Antes do procedimento"
               fill
-              sizes="100vw"
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1280px"
               className="object-contain"
               draggable={false}
             />
-            <span className="absolute bottom-5 left-5 font-sans text-xs tracking-[0.2em] uppercase text-white bg-charcoal/70 px-4 py-2 pointer-events-none z-10">
-              Antes
-            </span>
           </div>
 
           {/* After — clip driven directly via ref, initial 50% */}
@@ -108,13 +106,10 @@ export default function BeforeAfterSection() {
               src={ASSETS.after}
               alt="Depois do procedimento"
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1280px"
               className="object-contain"
               draggable={false}
             />
-            <span className="absolute bottom-5 right-5 font-sans text-xs tracking-[0.2em] uppercase text-white bg-charcoal/70 px-4 py-2 pointer-events-none z-10">
-              Depois
-            </span>
           </div>
 
           {/* Divider — positioned via ref, initial 50% */}
