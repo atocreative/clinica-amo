@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cream: #FAF8F5;
+    --color-sand: #EDE8E0;
+    --color-primary: #b0c3ca;
+    --color-accent: #f59e0b;
+    --color-charcoal: #1C1C1C;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background-color: #b0c3ca40;
+    color: #1C1C1C;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .text-hero {
+    font-size: clamp(2.6rem, 6.5vw, 5.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+
+  .text-headline {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  .text-subheadline {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.6;
+  }
+
+  .section-pad {
+    padding-top: clamp(5rem, 10vw, 9rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+
+  .gold-line::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background-color: var(--color-accent);
+    margin-top: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
