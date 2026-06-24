@@ -57,7 +57,7 @@ export default function Navbar() {
         menuOpen
           ? 'bg-charcoal shadow-xl'
           : scrolled
-          ? 'bg-cream/95 [backdrop-filter:blur(12px)] [-webkit-backdrop-filter:blur(12px)] shadow-md'
+          ? 'bg-charcoal/95 [backdrop-filter:blur(12px)] [-webkit-backdrop-filter:blur(12px)] shadow-lg'
           : 'bg-transparent'
       }`}
     >
@@ -72,7 +72,7 @@ export default function Navbar() {
             height={64}
             className="h-14 w-auto object-contain"
             style={{
-              filter: menuOpen
+              filter: menuOpen || scrolled
                 ? 'brightness(0) invert(1)'
                 : 'drop-shadow(0 3px 14px rgba(0,0,0,0.55)) drop-shadow(0 1px 5px rgba(0,0,0,0.35))',
             }}
@@ -86,7 +86,9 @@ export default function Navbar() {
             <li key={href}>
               <a
                 href={href}
-                className="font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-150 text-charcoal/75 hover:text-charcoal"
+                className={`font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-150 ${
+                  scrolled ? 'text-white/75 hover:text-white' : 'text-charcoal/75 hover:text-charcoal'
+                }`}
               >
                 {label}
               </a>
@@ -101,7 +103,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="p-2 text-charcoal/50 hover:text-charcoal transition-colors duration-150"
+            className={`p-2 transition-colors duration-150 ${scrolled ? 'text-white/60 hover:text-white' : 'text-charcoal/50 hover:text-charcoal'}`}
           >
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -114,7 +116,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            className="p-2 text-charcoal/50 hover:text-charcoal transition-colors duration-150"
+            className={`p-2 transition-colors duration-150 ${scrolled ? 'text-white/60 hover:text-white' : 'text-charcoal/50 hover:text-charcoal'}`}
           >
             <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
@@ -125,7 +127,9 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center px-6 py-2.5 rounded-full font-sans text-sm font-medium tracking-wide transition-colors duration-150 bg-charcoal text-cream hover:bg-charcoal/80"
+          className={`hidden md:inline-flex items-center px-6 py-2.5 rounded-full font-sans text-sm font-medium tracking-wide transition-colors duration-150 ${
+            scrolled ? 'bg-primary text-charcoal hover:bg-primary/80' : 'bg-charcoal text-cream hover:bg-charcoal/80'
+          }`}
         >
           Agendar
         </a>
@@ -141,7 +145,7 @@ export default function Navbar() {
             <span
               key={i}
               className={`block w-6 h-[2px] rounded-full transition-all duration-300 origin-center ${
-                menuOpen ? 'bg-white' : 'bg-charcoal'
+                menuOpen || scrolled ? 'bg-white' : 'bg-charcoal'
               } ${
                 i === 0 && menuOpen ? 'rotate-45 translate-y-[7px]' :
                 i === 1 && menuOpen ? 'opacity-0 scale-x-0' :
