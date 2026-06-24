@@ -56,7 +56,7 @@ export default function CTASection() {
   }
 
   const inputClass =
-    'w-full bg-transparent border-b border-sand focus:border-charcoal outline-none font-sans text-sm text-charcoal placeholder-secondary/50 py-3 transition-colors duration-150'
+    'w-full bg-transparent border-b border-sand focus:border-charcoal outline-none font-sans text-base text-charcoal placeholder-secondary/50 py-3 transition-colors duration-150'
 
   return (
     <section id="contact" ref={sectionRef} className="section-pad bg-cream overflow-hidden">
@@ -65,7 +65,7 @@ export default function CTASection() {
 
           {/* Left — context */}
           <div ref={leftRef} className="relative">
-            <div className="relative h-[420px] lg:h-[560px] overflow-hidden mb-10 lg:mb-0">
+            <div className="relative h-[420px] lg:h-[560px] overflow-hidden rounded-2xl mb-10 lg:mb-0">
               <Image
                 src={ASSETS.cinematicPhoto}
                 alt="Clínica AMO — ambiente"
@@ -78,7 +78,7 @@ export default function CTASection() {
                 <p className="font-serif text-white text-2xl leading-snug">
                   "Sua avaliação é o primeiro passo para uma beleza que é só sua."
                 </p>
-                <p className="font-sans text-white/60 text-xs mt-3 tracking-widest uppercase">
+                <p className="font-sans text-white/60 text-sm mt-3 tracking-widest uppercase">
                   {SITE.professional} · {SITE.title}
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default function CTASection() {
             <h2 className="font-serif text-headline text-charcoal mt-4 mb-3">
               Agende seu horário
             </h2>
-            <p className="font-sans text-sm text-secondary leading-relaxed mb-10">
+            <p className="font-sans text-base text-secondary leading-relaxed mb-10">
               Preencha e continuaremos pelo WhatsApp para encontrar o melhor horário para você.
             </p>
 
@@ -164,7 +164,7 @@ export default function CTASection() {
             </form>
 
             <div className="mt-10 pt-8 border-t border-sand">
-              <p className="font-sans text-xs text-secondary tracking-wide">
+              <p className="font-sans text-sm text-secondary tracking-wide">
                 {SITE.address}
               </p>
             </div>

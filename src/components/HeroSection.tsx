@@ -306,11 +306,11 @@ export default function HeroSection() {
       />
 
       {/* ── Content grid ─────────────────────────────────────────────── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pt-28">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10" style={{ paddingTop: 'max(7rem, calc(5rem + env(safe-area-inset-top) + 1rem))' }}>
         <div className="grid lg:grid-cols-2 gap-0 items-end">
 
           {/* Left — text */}
-          <div ref={textColRef} className="pb-24 lg:pb-32 max-w-xl">
+          <div ref={textColRef} className="pb-24 lg:pb-32 max-w-xl text-center lg:text-left mx-auto lg:mx-0">
             <h1
               ref={headlineRef}
               className="font-serif text-hero text-charcoal leading-none mb-7"
@@ -337,13 +337,13 @@ export default function HeroSection() {
             </p>
 
             <div ref={ctaRef} className="flex flex-col gap-5">
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2.5 justify-center lg:justify-start">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                 <span className="font-sans text-xs text-charcoal/55 tracking-wide">
                   Avaliação exclusiva com DermaVision
                 </span>
               </div>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 <a
                   href="#contact"
                   className="px-8 py-4 rounded-full bg-charcoal text-cream font-sans text-sm font-medium tracking-wide hover:bg-charcoal/80 transition-colors duration-150"

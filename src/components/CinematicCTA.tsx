@@ -1,11 +1,10 @@
 'use client'
 
 import { useRef } from 'react'
-import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { ASSETS, SITE } from '@/lib/constants'
+import { ASSETS } from '@/lib/constants'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -15,7 +14,6 @@ export default function CinematicCTA() {
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const subRef      = useRef<HTMLParagraphElement>(null)
   const ctaRef      = useRef<HTMLAnchorElement>(null)
-  const spaRef      = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
@@ -66,14 +64,6 @@ export default function CinematicCTA() {
         scrollTrigger: revealTrigger,
       })
 
-      // Spa essentials: dramatic slide + float
-      gsap.from(spaRef.current, {
-        x: -70, opacity: 0, rotation: -20, duration: 1.8, ease: 'expo.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
-      })
-      gsap.to(spaRef.current, {
-        y: -24, duration: 4.5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 0.5,
-      })
     },
     { scope: sectionRef },
   )
@@ -96,8 +86,8 @@ export default function CinematicCTA() {
       />
 
       {/* Layered overlays for depth */}
-      <div className="absolute inset-0 bg-charcoal/70" />
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/20 via-transparent to-charcoal/40" />
+      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(176, 195, 202, 0.50)' }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/35 via-transparent to-charcoal/55" />
 
       {/* Thin gold horizontal rule — decorative */}
       <div className="absolute top-16 left-1/2 -translate-x-1/2 w-16 h-px bg-accent/60" />
@@ -107,12 +97,14 @@ export default function CinematicCTA() {
         <h2
           ref={headlineRef}
           className="font-serif text-display text-white leading-none mb-8"
+          style={{ textShadow: '0 2px 24px rgba(0,0,0,0.65), 0 1px 6px rgba(0,0,0,0.45)' }}
         >
           Sua versão mais natural de você
         </h2>
         <p
           ref={subRef}
-          className="font-sans text-subheadline text-white/65 font-light mb-12 max-w-xl mx-auto"
+          className="font-sans text-subheadline text-white font-light mb-12 max-w-xl mx-auto"
+          style={{ textShadow: '0 1px 14px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.35)' }}
         >
           Agende seu horário e descubra o protocolo ideal para o seu rosto — sem compromisso.
         </p>
@@ -130,21 +122,6 @@ export default function CinematicCTA() {
       </div>
 
       <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-16 h-px bg-accent/60" />
-
-      {/* Spa essentials — Vecteezy PNG, anchors scene bottom-left */}
-      <div
-        ref={spaRef}
-        className="absolute bottom-0 left-0 w-48 lg:w-64 pointer-events-none"
-        aria-hidden="true"
-      >
-        <Image
-          src="/assets/spa-essentials.png"
-          alt=""
-          width={320}
-          height={280}
-          className="w-full h-auto opacity-30"
-        />
-      </div>
     </section>
   )
 }

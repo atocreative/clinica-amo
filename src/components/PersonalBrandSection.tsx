@@ -75,7 +75,7 @@ export default function PersonalBrandSection() {
 
           {/* Photo column */}
           <div ref={photoRef} className="relative flex flex-col">
-            <div className="relative flex-1 min-h-[520px] lg:min-h-[680px] overflow-hidden" data-inner>
+            <div className="relative flex-1 min-h-[520px] lg:min-h-[680px] overflow-hidden rounded-2xl" data-inner>
               <Image
                 src={ASSETS.personalPhoto}
                 alt={SITE.professional}

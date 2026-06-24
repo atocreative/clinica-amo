@@ -54,10 +54,10 @@ export default function Footer() {
               className="h-13 w-auto object-contain mb-5"
               style={{ filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.22))' }}
             />
-            <p className="font-sans text-sm leading-relaxed text-charcoal/60 max-w-xs mb-4">
+            <p className="font-sans text-base leading-relaxed text-charcoal/60 max-w-xs mb-4">
               Harmonização facial com propósito — beleza com ciência e planejamento em Brasília, DF.
             </p>
-            <p className="font-sans text-xs text-charcoal/45 mb-5">
+            <p className="font-sans text-sm text-charcoal/45 mb-5">
               {SITE.professional} · Biomédica Esteta · {SITE.credential}
             </p>
 
@@ -98,13 +98,13 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               {NAV_LINKS.map(({ label, href }) => (
                 <li key={href}>
-                  <a href={href} className="font-sans text-sm text-charcoal/65 hover:text-charcoal transition-colors duration-150">
+                  <a href={href} className="font-sans text-base text-charcoal/65 hover:text-charcoal transition-colors duration-150">
                     {label}
                   </a>
                 </li>
               ))}
               <li>
-                <a href="#contact" className="font-sans text-sm text-charcoal font-medium hover:text-charcoal/70 transition-colors duration-150">
+                <a href="#contact" className="font-sans text-base text-charcoal font-medium hover:text-charcoal/70 transition-colors duration-150">
                   Agendar Horário
                 </a>
               </li>
@@ -116,7 +116,7 @@ export default function Footer() {
             <h3 className="font-sans text-xs tracking-[0.25em] uppercase text-charcoal/40 mb-6">
               Localização
             </h3>
-            <address className="not-italic font-sans text-sm text-charcoal/65 leading-relaxed">
+            <address className="not-italic font-sans text-base text-charcoal/65 leading-relaxed">
               <p>Av. Pau Brasil</p>
               <p>Lê Quartier</p>
               <p>Águas Claras</p>
@@ -127,7 +127,7 @@ export default function Footer() {
               href={SITE.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-xs text-charcoal font-medium hover:text-charcoal/60 transition-colors duration-150 mt-4 inline-block tracking-wide"
+              className="font-sans text-sm text-charcoal font-medium hover:text-charcoal/60 transition-colors duration-150 mt-4 inline-block tracking-wide"
             >
               Ver no mapa →
             </a>

@@ -46,6 +46,7 @@ export default function Navbar() {
           ? 'bg-charcoal/95 backdrop-blur-sm shadow-sm'
           : 'bg-transparent'
       }`}
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
         <a href="#hero" className="flex-shrink-0" aria-label={SITE.name}>
@@ -55,7 +56,7 @@ export default function Navbar() {
             width={160}
             height={64}
             className="h-14 w-auto object-contain transition-all duration-300"
-            style={{ filter: isDark ? 'brightness(0) invert(1)' : 'drop-shadow(0 3px 14px rgba(0,0,0,0.35))' }}
+            style={{ filter: isDark ? 'brightness(0) invert(1)' : 'drop-shadow(0 4px 22px rgba(0,0,0,0.60)) drop-shadow(0 2px 8px rgba(0,0,0,0.35))' }}
             priority
           />
         </a>
@@ -112,7 +113,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={menuOpen}
-          className="md:hidden flex flex-col gap-[5px] p-2"
+          className="md:hidden flex flex-col gap-[5px] p-2 min-h-[44px] min-w-[44px] justify-center"
         >
           {[0, 1, 2].map((i) => (
             <span
@@ -131,7 +132,7 @@ export default function Navbar() {
 
       <div
         className={`md:hidden bg-charcoal overflow-hidden transition-all duration-500 ease-in-out ${
-          menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          menuOpen ? 'max-h-[85svh] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="px-6 pt-2 pb-10 flex flex-col gap-7">

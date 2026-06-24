@@ -56,7 +56,7 @@ export default function FAQSection() {
                   aria-expanded={isOpen}
                   className="w-full flex items-start justify-between gap-6 py-6 text-left group"
                 >
-                  <span className="font-serif text-lg text-charcoal group-hover:text-secondary transition-colors duration-150 leading-snug">
+                  <span className="font-serif text-xl text-charcoal group-hover:text-secondary transition-colors duration-150 leading-snug">
                     {item.q}
                   </span>
                   <span
@@ -73,7 +73,7 @@ export default function FAQSection() {
                   className="overflow-hidden transition-all duration-300 ease-expo-out"
                   style={{ maxHeight: isOpen ? '300px' : '0px', opacity: isOpen ? 1 : 0 }}
                 >
-                  <p className="font-sans text-sm text-secondary leading-relaxed pb-6">
+                  <p className="font-sans text-base text-secondary leading-relaxed pb-6">
                     {item.a}
                   </p>
                 </div>
@@ -83,7 +83,7 @@ export default function FAQSection() {
         </div>
 
         <div className="mt-14 pt-10 border-t border-charcoal/10 text-center">
-          <p className="font-sans text-sm text-secondary mb-6">
+          <p className="font-sans text-base text-secondary mb-6">
             Ficou com outra dúvida? A equipe está pronta para responder.
           </p>
           <a

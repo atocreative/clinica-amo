@@ -75,7 +75,7 @@ export default function BenefitsSection() {
 
           {/* Image + floating serum */}
           <div ref={wrapperRef} className="relative order-2 lg:order-1">
-            <div ref={imageRef} className="relative h-[460px] lg:h-[600px] overflow-hidden">
+            <div ref={imageRef} className="relative h-[460px] lg:h-[600px] overflow-hidden rounded-2xl">
               <Image
                 src={ASSETS.benefitsPhoto}
                 alt="Procedimento estético"
@@ -89,7 +89,7 @@ export default function BenefitsSection() {
             {/* Serum dropper — Vecteezy PNG, floats at bottom-right corner */}
             <div
               ref={serumRef}
-              className="absolute -bottom-10 -right-6 lg:-right-10 w-32 lg:w-40 pointer-events-none"
+              className="absolute -bottom-10 -right-6 lg:-right-12 w-44 lg:w-56 pointer-events-none"
               aria-hidden="true"
             >
               <Image
@@ -97,7 +97,7 @@ export default function BenefitsSection() {
                 alt=""
                 width={160}
                 height={320}
-                className="w-full h-auto drop-shadow-2xl"
+                className="w-full h-auto drop-shadow-2xl opacity-60"
               />
             </div>
           </div>
@@ -115,11 +115,11 @@ export default function BenefitsSection() {
 
             <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {BENEFITS.map((benefit) => (
-                <div key={benefit.title} data-card className="group">
-                  <h3 className="font-serif text-xl text-charcoal mb-3 group-hover:text-secondary transition-colors duration-150">
+                <div key={benefit.title} data-card className="group bg-cream/55 rounded-2xl p-5 shadow-sm">
+                  <h3 className="font-serif text-2xl text-charcoal mb-3 group-hover:text-secondary transition-colors duration-150">
                     {benefit.title}
                   </h3>
-                  <p className="font-sans text-sm text-secondary leading-relaxed">
+                  <p className="font-sans text-base text-secondary leading-relaxed">
                     {benefit.description}
                   </p>
                 </div>
@@ -129,7 +129,7 @@ export default function BenefitsSection() {
             <div className="mt-12 pt-8 border-t border-sand">
               <a
                 href="#contact"
-                className="font-sans text-sm text-charcoal tracking-wide hover:text-accent transition-colors duration-150 inline-flex items-center gap-3"
+                className="font-sans text-base text-charcoal tracking-wide hover:text-accent transition-colors duration-150 inline-flex items-center gap-3"
               >
                 Quero conhecer meu plano
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">

@@ -90,7 +90,7 @@ export default function SuccessCasesSection() {
 
         <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {CASES.map((c) => (
-            <article key={c.label} data-case className="group overflow-hidden bg-cream">
+            <article key={c.label} data-case className="group overflow-hidden bg-cream rounded-2xl shadow-sm">
               <div className="relative h-80 overflow-hidden">
                 <Image
                   src={c.src}
@@ -102,8 +102,8 @@ export default function SuccessCasesSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="p-6 border-b-2 border-transparent group-hover:border-primary transition-colors duration-300">
-                <h3 className="font-serif text-lg text-charcoal mb-2">{c.label}</h3>
-                <p className="font-sans text-sm text-secondary leading-relaxed">{c.result}</p>
+                <h3 className="font-serif text-xl text-charcoal mb-2">{c.label}</h3>
+                <p className="font-sans text-base text-secondary leading-relaxed">{c.result}</p>
               </div>
             </article>
           ))}
