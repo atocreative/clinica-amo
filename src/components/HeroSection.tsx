@@ -275,7 +275,7 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-screen flex items-end pb-0 overflow-hidden"
+      className="relative min-h-dvh flex items-end pb-0 overflow-hidden"
     >
       {/* Video background */}
       <video

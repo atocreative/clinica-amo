@@ -34,10 +34,23 @@
 }
 
 @layer utilities {
-  /* Safe-area inset — two declarations needed: constant() for iOS 11.0-11.1, env() for 11.2+ */
+  /* Safe-area inset — two declarations: constant() for iOS 11.0-11.1, env() for 11.2+ */
   .pt-safe {
     padding-top: constant(safe-area-inset-top);
     padding-top: env(safe-area-inset-top);
+  }
+
+  /* Dynamic viewport height — 100vh fallback for old browsers, 100dvh for iOS Safari (excludes browser chrome) */
+  .min-h-dvh {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* Force GPU compositing layer — fixes position:fixed rendering bugs on iOS Safari */
+  .hw-accel {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .text-display {

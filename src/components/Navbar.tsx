@@ -51,7 +51,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 pt-safe ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 pt-safe hw-accel ${
         menuOpen
           ? 'bg-charcoal'
           : scrolled
