@@ -34,10 +34,12 @@
 }
 
 @layer utilities {
-  /* Safe-area inset — two declarations: constant() for iOS 11.0-11.1, env() for 11.2+ */
+  /* Safe-area inset with hardcoded fallback:
+     - constant() for iOS 11.0-11.1
+     - max(1.5rem, env()) ensures minimum 24px gap even if env() resolves to 0 (iOS Safari bug) */
   .pt-safe {
     padding-top: constant(safe-area-inset-top);
-    padding-top: env(safe-area-inset-top);
+    padding-top: max(1.5rem, env(safe-area-inset-top));
   }
 
   /* Dynamic viewport height — 100vh fallback for old browsers, 100dvh for iOS Safari (excludes browser chrome) */
