@@ -88,7 +88,7 @@ export default function PersonalBrandSection() {
             {/* Pink leaves frame */}
             <div
               ref={leavesRef}
-              className="absolute -top-8 -left-10 w-52 pointer-events-none"
+              className="absolute -top-4 -left-5 w-24 lg:-top-8 lg:-left-10 lg:w-52 pointer-events-none"
               aria-hidden="true"
             >
               <Image src="/assets/pink-leaves-frame.png" alt="" width={300} height={300} className="w-full h-auto opacity-55" />

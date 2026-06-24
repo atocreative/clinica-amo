@@ -21,8 +21,20 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (!menuOpen) return
+    // iOS Safari ignores overflow:hidden on body — position:fixed is required to lock scroll
+    const scrollY = window.scrollY
+    document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = '100%'
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      window.scrollTo(0, scrollY)
+    }
   }, [menuOpen])
 
   useGSAP(
@@ -39,14 +51,13 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 pt-safe ${
         menuOpen
           ? 'bg-charcoal'
           : scrolled
-          ? 'bg-charcoal/95 backdrop-blur-sm shadow-sm'
+          ? 'bg-charcoal/95 [backdrop-filter:blur(8px)] [-webkit-backdrop-filter:blur(8px)] shadow-sm'
           : 'bg-transparent'
       }`}
-      style={{ paddingTop: 'env(safe-area-inset-top)' }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
         <a href="#hero" className="flex-shrink-0" aria-label={SITE.name}>
@@ -132,7 +143,7 @@ export default function Navbar() {
 
       <div
         className={`md:hidden bg-charcoal overflow-hidden transition-all duration-500 ease-in-out ${
-          menuOpen ? 'max-h-[85svh] opacity-100' : 'max-h-0 opacity-0'
+          menuOpen ? 'max-h-[85vh] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="px-6 pt-2 pb-10 flex flex-col gap-7">

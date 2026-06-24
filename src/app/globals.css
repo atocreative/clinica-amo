@@ -34,6 +34,12 @@
 }
 
 @layer utilities {
+  /* Safe-area inset — two declarations needed: constant() for iOS 11.0-11.1, env() for 11.2+ */
+  .pt-safe {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+  }
+
   .text-display {
     font-size: clamp(3.5rem, 9vw, 8rem);
     line-height: 1.02;
