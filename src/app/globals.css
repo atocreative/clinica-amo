@@ -36,10 +36,11 @@
 @layer utilities {
   /* Safe-area inset with hardcoded fallback:
      - constant() for iOS 11.0-11.1
-     - max(1.5rem, env()) ensures minimum 24px gap even if env() resolves to 0 (iOS Safari bug) */
+     - max(2.5rem, env()) ensures minimum 40px gap even if env() resolves to 0;
+       Dynamic Island reports ~59px so env() always wins on real notched hardware */
   .pt-safe {
     padding-top: constant(safe-area-inset-top);
-    padding-top: max(1.5rem, env(safe-area-inset-top));
+    padding-top: max(2.5rem, env(safe-area-inset-top));
   }
 
   /* Dynamic viewport height — 100vh fallback for old browsers, 100dvh for iOS Safari (excludes browser chrome) */

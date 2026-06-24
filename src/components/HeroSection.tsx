@@ -306,7 +306,7 @@ export default function HeroSection() {
       />
 
       {/* ── Content grid ─────────────────────────────────────────────── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10" style={{ paddingTop: 'max(7rem, calc(5rem + env(safe-area-inset-top) + 1rem))' }}>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10" style={{ paddingTop: 'max(10rem, calc(env(safe-area-inset-top) + 8rem))' }}>
         <div className="grid lg:grid-cols-2 gap-0 items-end">
 
           {/* Left — text */}
